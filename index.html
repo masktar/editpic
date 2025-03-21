@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload & Chỉnh Sửa Ảnh</title>
+    <link rel="stylesheet" href="style.css"> <!-- Gọi file CSS -->
+</head>
+<body>
+    <h2>Upload & Chỉnh Sáng - Tương Phản - Màu Sắc</h2>
+
+    <div class="container">
+        <!-- Bên trái: Ảnh -->
+        <div id="preview-container">
+            <canvas id="canvas"></canvas>
+        </div>
+
+        <!-- Bên phải: Công cụ -->
+        <div class="tools">
+            <input type="file" id="imageInput" accept="image/*">
+
+            <div class="slider-container">
+                <label for="brightness">🔆 Độ sáng:</label>
+                <input type="range" id="brightness" min="0" max="200" value="100">
+
+                <label for="contrast">🎭 Độ tương phản:</label>
+                <input type="range" id="contrast" min="0" max="200" value="100">
+
+                <label for="saturation">🎨 Độ bão hòa:</label>
+                <input type="range" id="saturation" min="0" max="200" value="100">
+
+                <label for="hue">🌈 Sắc độ màu:</label>
+                <input type="range" id="hue" min="0" max="360" value="0">
+            </div>
+
+            <button id="downloadBtn">⬇️ Tải ảnh xuống</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script> <!-- Gọi file JS -->
+</body>
+</html>

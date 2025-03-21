@@ -1,0 +1,87 @@
+body { 
+  font-family: Arial, sans-serif; 
+  margin: 20px; 
+  text-align: center; 
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 90%;
+  margin: auto;
+  gap: 20px;
+}
+
+/* Bên trái: Hiển thị ảnh */
+#preview-container {
+  flex: 2;
+  text-align: center;
+}
+
+canvas {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  background: #f0f0f0;
+  border-radius: 10px;
+}
+
+/* Bên phải: Công cụ */
+.tools {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  border-left: 2px solid #ddd;
+}
+
+.slider-container {
+  width: 100%;
+}
+
+.slider-container label {
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: bold;
+}
+
+input[type="range"] {
+  width: 100%;
+}
+
+#downloadBtn {
+  width: 100%;
+  padding: 10px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+#downloadBtn:hover {
+  background-color: #218838;
+}
+
+/* Responsive: Hiển thị dọc trên mobile */
+@media (max-width: 768px) {
+  .container {
+      flex-direction: column;
+      align-items: center;
+  }
+
+  #preview-container,
+  .tools {
+      width: 100%;
+  }
+
+  .tools {
+      border-left: none;
+      border-top: 2px solid #ddd;
+      padding-top: 20px;
+  }
+}
