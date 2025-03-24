@@ -85,3 +85,30 @@ input[type="range"] {
       padding-top: 20px;
   }
 }
+.control {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.control label {
+  width: 120px;
+  text-align: left;
+}
+
+.control input[type="range"] {
+  flex: 1;
+  margin: 0 10px;
+}
+
+.reset-icon {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.reset-icon:hover {
+  color: red;
+}
