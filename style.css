@@ -112,3 +112,64 @@ input[type="range"] {
 .reset-icon:hover {
   color: red;
 }
+
+/* Căn chỉnh các thanh trượt */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 8px;
+  border-radius: 5px;
+  outline: none;
+  margin: 10px 0;
+}
+
+/* Đảm bảo màu nền chỉ áp dụng cho đúng thanh trượt */
+.temperature-slider {
+  background: linear-gradient(to right, blue, white, yellow);
+}
+
+.contrast-slider {
+  background: linear-gradient(to right, black, white);
+}
+
+.hue-slider {
+  background: linear-gradient(to right, red, yellow, green, cyan, blue, magenta, red);
+}
+
+.saturation-slider {
+  background: linear-gradient(to right, gray, rgb(255, 0, 255));
+}
+
+.brightness-slider {
+  background: linear-gradient(to right, black, white);
+}
+
+/* Tùy chỉnh nút trượt */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  background: white;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 1px solid gray;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: white;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 1px solid gray;
+}
+/* Độ sáng: từ đen đến trắng */
+.brightness-slider {
+  background: linear-gradient(to right, black, white);
+}
+
+/* Độ bão hòa: từ trắng đến đen */
+.saturation-slider {
+  background: linear-gradient(to right, white, black);
+}
