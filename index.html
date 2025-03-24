@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upload & Chỉnh Sửa Ảnh</title>
     <link rel="stylesheet" href="style.css"> <!-- Gọi file CSS -->
 </head>
+
 <body>
     <h2>Upload & Chỉnh Sáng - Tương Phản - Màu Sắc</h2>
 
@@ -20,23 +22,44 @@
             <input type="file" id="imageInput" accept="image/*">
 
             <div class="slider-container">
-                <label for="brightness">🔆 Độ sáng:</label>
-                <input type="range" id="brightness" min="0" max="200" value="100">
-
-                <label for="contrast">🎭 Độ tương phản:</label>
-                <input type="range" id="contrast" min="0" max="200" value="100">
-
-                <label for="saturation">🎨 Độ bão hòa:</label>
-                <input type="range" id="saturation" min="0" max="200" value="100">
-
-                <label for="hue">🌈 Sắc độ màu:</label>
-                <input type="range" id="hue" min="0" max="360" value="0">
+                <div class="control">
+                    <label>🌞 Độ sáng:</label>
+                    <input type="range" id="brightness" min="0" max="200" value="100">
+                    <button class="reset-icon" onclick="resetSlider('brightness')">🔄</button>
+                </div>
+                
+                <div class="control">
+                    <label>🎭 Độ tương phản:</label>
+                    <input type="range" id="contrast" min="0" max="200" value="100">
+                    <button class="reset-icon" onclick="resetSlider('contrast')">🔄</button>
+                </div>
+                
+                <div class="control">
+                    <label>🌸 Độ bão hòa:</label>
+                    <input type="range" id="saturation" min="0" max="200" value="100">
+                    <button class="reset-icon" onclick="resetSlider('saturation')">🔄</button>
+                </div>
+                
+                <div class="control">
+                    <label>🌈 Sắc độ màu:</label>
+                    <input type="range" id="hue" min="-180" max="180" value="0">
+                    <button class="reset-icon" onclick="resetSlider('hue')">🔄</button>
+                </div>
+                
+                <div class="control">
+                    <label>🌡 Nhiệt độ màu:</label>
+                    <input type="range" id="temperature" min="-100" max="100" value="0">
+                    <button class="reset-icon" onclick="resetSlider('temperature')">🔄</button>
+                </div>
+                
             </div>
 
             <button id="downloadBtn">⬇️ Tải ảnh xuống</button>
         </div>
     </div>
+    
 
     <script src="script.js"></script> <!-- Gọi file JS -->
 </body>
+
 </html>
