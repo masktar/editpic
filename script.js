@@ -15,7 +15,7 @@ const saturationValue = document.getElementById("saturationValue");
 const hueValue = document.getElementById("hueValue");
 const temperatureValue = document.getElementById("temperatureValue");
 const tintValue = document.getElementById("tintValue");
-
+const sliders = document.querySelectorAll("input[type='range']");
 
 
 let img = new Image();
@@ -115,15 +115,6 @@ function updateFilters(saveHistory = true) {
     if (saveHistory) saveToHistory();
 }
 
-function resetFilters() {
-    brightnessSlider.value = 100;
-    contrastSlider.value = 100;
-    saturationSlider.value = 100;
-    hueSlider.value = 0;
-    temperatureSlider.value = 0;
-    tintSlider.value = 0;  // 🌟 Reset Tint về 0
-    updateFilters();
-}
 
 function saveToHistory() {
     if (historyIndex < history.length - 1) {
@@ -213,14 +204,66 @@ function resetSlider(id) {
 
 
 const resetButton = document.getElementById("reset-btn");
-resetButton.addEventListener("dblclick", resetImage);
+// resetButton.addEventListener("dblclick", resetImage);
 
-downloadBtn.addEventListener("click", function() {
+document.getElementById("downloadBtn").addEventListener("click", function () {
+    const canvas = document.getElementById("canvas");
+    if (!canvas || !canvas.getContext) {
+        alert("Không có ảnh để tải xuống!");
+        return;
+    }
     const link = document.createElement("a");
-    link.download = "edited-image.png";
     link.href = canvas.toDataURL("image/png");
+    link.download = "edited-image.png";
+    document.body.appendChild(link);
     link.click();
+    document.body.removeChild(link);
 });
 
+
+
+// Lặp qua từng thanh trượt để cập nhật giá trị khi kéo
+sliders.forEach(slider => {
+    slider.addEventListener("input", function () {
+        const valueDisplay = document.getElementById(this.id + "Value");
+        if (valueDisplay) {
+            valueDisplay.textContent = this.value;
+        }
+    });
+});
+// Lặp qua tất cả thanh trượt để cập nhật giá trị hiển thị
+document.querySelectorAll("input[type='range']").forEach(slider => {
+    slider.addEventListener("input", function () {
+        const valueDisplay = document.getElementById(this.id + "Value"); // Lấy phần tử hiển thị số
+        if (valueDisplay) {
+            valueDisplay.textContent = this.value; // Cập nhật số
+        }
+        updateFilters(); // Cập nhật ảnh ngay khi kéo
+    });
+});
+// Đảm bảo cập nhật giá trị hiển thị khi kéo thanh trượt
+document.addEventListener("DOMContentLoaded", function () {
+    const sliders = document.querySelectorAll("input[type='range']");
+
+    sliders.forEach(slider => {
+        slider.addEventListener("input", function () {
+            const valueDisplay = document.getElementById(this.id + "Value");
+            if (valueDisplay) {
+                valueDisplay.textContent = this.value; // Cập nhật số khi kéo
+            }
+        });
+    });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    const downloadBtn = document.getElementById("downloadBtn");
+    if (!downloadBtn) {
+        console.error("Không tìm thấy nút download!");
+        return;
+    }
+    downloadBtn.addEventListener("click", function () {
+        console.log("Nút tải ảnh đã được nhấn!");
+    });
+});
 
 
