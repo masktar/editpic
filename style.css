@@ -20,11 +20,17 @@ body {
 }
 
 canvas {
+  display: block;
+  margin: auto;
   max-width: 100%;
   height: auto;
   display: block;
   background: #f0f0f0;
   border-radius: 10px;
+  max-width: 60vw; /* Không quá 60% chiều rộng viewport */
+  max-height: 90vh; /* Không quá 70% chiều cao viewport */
+  display: block;
+  margin: auto; /* Căn giữa */
 }
 
 /* Bên phải: Công cụ */
@@ -172,4 +178,30 @@ input[type="range"]::-moz-range-thumb {
 /* Độ bão hòa: từ trắng đến đen */
 .saturation-slider {
   background: linear-gradient(to right, white, black);
+}
+/* Tint: từ xanh lá đến tím */
+.tint-slider {
+  background: linear-gradient(to right, green, purple);
+}
+
+/* Ẩn input file gốc */
+input[type="file"] {
+  display: none;
+}
+
+/* Tạo button custom */
+.custom-file-upload {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #3498db;  /* Màu xanh dương */
+  color: white;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* Hover hiệu ứng */
+.custom-file-upload:hover {
+  background-color: #2980b9;
 }
