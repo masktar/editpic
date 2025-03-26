@@ -19,45 +19,57 @@
 
         <!-- Bên phải: Công cụ -->
         <div class="tools">
-            <input type="file" id="imageInput" accept="image/*">
+            <label for="fileInput" class="custom-file-upload">
+                Chọn ảnh 📂
+            </label>
+            <input type="file" id="fileInput" accept="image/*">
+            
 
             <div class="slider-container">
+
                 <div class="control">
-                    <label>🌞 Độ sáng:</label>
-                    <input type="range" id="brightness" class="brightness-slider" min="0" max="200" value="100">
-                    <button class="reset-icon" onclick="resetSlider('brightness')">🔄</button>
-                </div>
-                
-                <div class="control">
-                    <label>🎭 Độ tương phản:</label>
-                    <input type="range" id="contrast" class="contrast-slider" min="0" max="200" value="100">
-                    <button class="reset-icon" onclick="resetSlider('contrast')">🔄</button>
-                </div>
-                
-                <div class="control">
-                    <label>🌸 Độ bão hòa:</label>
-                    <input type="range" id="saturation" class="saturation-slider" min="0" max="200" value="100">
-                    <button class="reset-icon" onclick="resetSlider('saturation')">🔄</button>
-                </div>
-                
-                <div class="control">
-                    <label>🌈 Sắc độ màu:</label>
-                    <input type="range" id="hue" class="hue-slider" min="-180" max="180" value="0">
-                    <button class="reset-icon" onclick="resetSlider('hue')">🔄</button>
-                </div>
-                
-                <div class="control">
-                    <label>🌡 Nhiệt độ màu:</label>
+                    <label>Temperature 🌡:</label>
                     <input type="range" id="temperature" class="temperature-slider" min="-100" max="100" value="0">
                     <button class="reset-icon" onclick="resetSlider('temperature')">🔄</button>
                 </div>
-                
+
+                <div class="control">
+                    <label for="tint">Tint 🎭:</label>
+                    <input type="range" id="tint" class="tint-slider" min="-100" max="100" value="0">
+                    <button class="reset-icon" onclick="resetSlider('tint')">🔄</button>
+                </div>
+
+                <div class="control">
+                    <label>Exposure 🌞:</label>
+                    <input type="range" id="brightness" class="brightness-slider" min="0" max="200" value="100">
+                    <button class="reset-icon" onclick="resetSlider('brightness')">🔄</button>
+                </div>
+
+                <div class="control">
+                    <label>Contrast 🎭:</label>
+                    <input type="range" id="contrast" class="contrast-slider" min="0" max="200" value="100">
+                    <button class="reset-icon" onclick="resetSlider('contrast')">🔄</button>
+                </div>
+
+                <div class="control">
+                    <label>Hue 🌈:</label>
+                    <input type="range" id="hue" class="hue-slider" min="-180" max="180" value="0">
+                    <button class="reset-icon" onclick="resetSlider('hue')">🔄</button>
+                </div>
+
+                <div class="control">
+                    <label>Saturation 🌸:</label>
+                    <input type="range" id="saturation" class="saturation-slider" min="0" max="200" value="100">
+                    <button class="reset-icon" onclick="resetSlider('saturation')">🔄</button>
+                </div>
+
             </div>
 
             <button id="downloadBtn">⬇️ Tải ảnh xuống</button>
+
         </div>
     </div>
-    
+
 
     <script src="script.js"></script> <!-- Gọi file JS -->
 </body>
