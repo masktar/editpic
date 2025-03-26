@@ -19,60 +19,82 @@
 
         <!-- Bên phải: Công cụ -->
         <div class="tools">
-            <label for="fileInput" class="custom-file-upload">
-                Chọn ảnh 📂
-            </label>
-            <input type="file" id="fileInput" accept="image/*">
-            
 
+            <div class="button-group">
+                <label for="fileInput" class="custom-file-upload">
+                    Chọn ảnh 📂
+                </label>
+                <input type="file" id="fileInput" accept="image/*">
+                <button id="resetAllBtn">Reset toàn bộ</button>
+            </div>
+        
+        
             <div class="slider-container">
 
                 <div class="control">
-                    <label for="temperature">Temperature 🌡:</label>
+                    <label for="temperature">Temperature🌡:</label>
                     <input type="range" id="temperature" class="temperature-slider" min="-100" max="100" value="0">
                     <button class="reset-icon" onclick="resetSlider('temperature')">🔄</button>
                 </div>
-            
+
                 <div class="control">
-                    <label for="tint">Tint 🎭:</label>
+                    <label for="tint">Tint🎭:</label>
                     <input type="range" id="tint" class="tint-slider" min="-100" max="100" value="0">
                     <button class="reset-icon" onclick="resetSlider('tint')">🔄</button>
                 </div>
-            
+
                 <div class="control">
-                    <label for="brightness">Brightness 🌞:</label>
+                    <label for="brightness">Brightness🌞:</label>
                     <input type="range" id="brightness" class="brightness-slider" min="0" max="200" value="100">
                     <button class="reset-icon" onclick="resetSlider('brightness')">🔄</button>
                 </div>
-            
+
                 <div class="control">
-                    <label for="contrast">Contrast 🎭:</label>
+                    <label for="contrast">Contrast🎭:</label>
                     <input type="range" id="contrast" class="contrast-slider" min="0" max="200" value="100">
                     <button class="reset-icon" onclick="resetSlider('contrast')">🔄</button>
                 </div>
-            
+
                 <div class="control">
-                    <label for="hue">Hue 🌈:</label>
+                    <label for="hue">Hue🌈:</label>
                     <input type="range" id="hue" class="hue-slider" min="-180" max="180" value="0">
                     <button class="reset-icon" onclick="resetSlider('hue')">🔄</button>
                 </div>
-            
+
                 <div class="control">
-                    <label for="saturation">Saturation 🌸:</label>
+                    <label for="saturation">Saturation🌸:</label>
                     <input type="range" id="saturation" class="saturation-slider" min="0" max="200" value="100">
                     <button class="reset-icon" onclick="resetSlider('saturation')">🔄</button>
                 </div>
-            
+
+                <div class="control">
+                    <label for="redRange">Red🔴:</label>
+                    <input type="range" id="redRange" min="-255" max="255" value="0" oninput="adjustRed()">
+                    <!-- <span id="redValue">0</span> -->
+                    <button class="reset-btn" onclick="resetSlider('redRange')">🔄</button>
+                </div>
+
+                <div class="control">
+                    <label for="greenRange">Green🟢 :</label>
+                    <input type="range" id="greenRange" min="-255" max="255" value="0">
+                    <!-- <span id="greenValue">0</span> -->
+                    <button class="reset-btn" onclick="resetSlider('greenRange')">🔄</button>
+                </div>
+
+                <div class="control">
+                    <label for="blueRange">Blue🔵 :</label>
+                    <input type="range" id="blueRange" min="-255" max="255" value="0">
+                    <!-- <span id="blueValue">0</span> -->
+                    <button class="reset-btn" onclick="resetSlider('blueRange')">🔄</button>
+
+                </div>
+                <button id="downloadBtn">Tải ảnh xuống</button>
+
             </div>
-            
-
-            <button id="downloadBtn">Tải ảnh xuống</button>
-
         </div>
-    </div>
 
 
-    <script src="script.js"></script> <!-- Gọi file JS -->
+        <script src="script.js"></script> <!-- Gọi file JS -->
 </body>
 
 </html>
