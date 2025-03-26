@@ -18,6 +18,7 @@ const tintValue = document.getElementById("tintValue");
 const sliders = document.querySelectorAll("input[type='range']");
 
 
+
 let img = new Image();
 let history = [];
 let historyIndex = -1;
@@ -44,6 +45,21 @@ document.getElementById("fileInput").addEventListener("change", function (event)
     }
 });
 
+function resetFilters() {
+    document.getElementById("temperature").value = 0;
+    document.getElementById("tint").value = 0;
+    document.getElementById("brightness").value = 100;
+    document.getElementById("contrast").value = 100;
+    document.getElementById("hue").value = 0;
+    document.getElementById("saturation").value = 100;
+    document.getElementById("redRange").value = 0;
+    document.getElementById("greenRange").value = 0;
+    document.getElementById("blueRange").value = 0;
+
+    // Gọi lại các hàm cập nhật để áp dụng giá trị mới
+    // adjustImage();
+}
+
 
 imageInput.addEventListener("change", function(event) {
     const file = event.target.files[0];
@@ -51,7 +67,7 @@ imageInput.addEventListener("change", function(event) {
         const reader = new FileReader();
         reader.onload = function(e) {
             img.src = e.target.result;
-            resetFilters(); 
+            // resetFilters(); 
         };
         reader.readAsDataURL(file);
     }
@@ -85,6 +101,9 @@ img.onload = function() {
 function updateFilters(saveHistory = true) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     
+    let greenValue = parseInt(document.getElementById("greenRange").value);
+    let blueValue = parseInt(document.getElementById("blueRange").value); // ✅ Thêm giá trị Blue
+
     let tempValue = parseInt(temperatureSlider.value);
     let tintValue = parseInt(tintSlider.value);
     let r = tempValue > 0 ? tempValue * 0.5 : 0;
@@ -92,7 +111,7 @@ function updateFilters(saveHistory = true) {
     let g = tintValue > 0 ? tintValue * 0.5 : 0;
     let m = tintValue < 0 ? Math.abs(tintValue) * 0.5 : 0;
 
-    ctx.filter = `
+      ctx.filter = `
         brightness(${brightnessSlider.value}%) 
         contrast(${contrastSlider.value}%) 
         saturate(${saturationSlider.value}%) 
@@ -108,6 +127,8 @@ function updateFilters(saveHistory = true) {
         data[i] += r - m; // 🌟 Tint tác động lên Red và Magenta
         data[i + 1] += g; // 🌟 Tint tăng Green
         data[i + 2] += b; // 🌟 Temperature ảnh hưởng đến Blue
+        data[i + 1] = Math.min(255, Math.max(0, data[i + 1] + greenValue)); // Điều chỉnh Green
+        data[i + 2] = Math.min(255, Math.max(0, data[i + 2] + blueValue)); // ✅ Điều chỉnh Blue
     }
 
     ctx.putImageData(imageData, 0, 0);
@@ -194,7 +215,7 @@ function resetSlider(id) {
     if (slider) {
         // Xác định giá trị mặc định của từng slider
         let defaultValue = 100; // Mặc định cho Brightness, Contrast, Saturation
-        if (id === "hue" || id === "temperature" || id === "tint") {
+        if (id === "hue" || id === "temperature" || id === "tint" || id === "redRange" || id === "greenRange" || id === "blueRange") {
             defaultValue = 0; // Hue, Temperature, Tint mặc định là 0
         }
         slider.value = defaultValue;
@@ -266,4 +287,59 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+document.getElementById("redRange").addEventListener("input", adjustRed);
+document.getElementById("greenRange").addEventListener("input", updateFilters);
 
+
+document.getElementById("redRange").addEventListener("input", function () {
+    document.getElementById("redValue").textContent = this.value;
+    adjustRed();
+});
+
+
+function adjustRed() {
+    let redValue = parseInt(document.getElementById("redRange").value);
+    let canvas = document.getElementById("canvas");
+    let ctx = canvas.getContext("2d");
+
+    let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    let data = imageData.data;
+
+    for (let i = 0; i < data.length; i += 4) {
+        data[i] = Math.min(255, Math.max(0, data[i] + redValue)); // Điều chỉnh Red, giữ trong khoảng [0, 255]
+    }
+
+    ctx.putImageData(imageData, 0, 0);
+}
+
+document.getElementById("resetAllBtn").addEventListener("click", function () {
+    // Reset các thanh trượt về giá trị mặc định
+    document.querySelectorAll("input[type='range']").forEach(slider => {
+        slider.value = slider.defaultValue || slider.min;
+    });
+
+    // Reset tất cả input file (nếu có)
+    document.querySelectorAll("input[type='file']").forEach(input => {
+        input.value = "";
+    });
+
+    // Reset màu sắc, hoặc các tùy chỉnh khác
+    document.getElementById("preview-container").style.filter = "none";
+
+    console.log("Đã reset toàn bộ thông số!");
+    // Reset tất cả các thanh trượt về giá trị mặc định
+    document.getElementById("temperature").value = 0;
+    document.getElementById("tint").value = 0;
+    document.getElementById("brightness").value = 100;
+    document.getElementById("contrast").value = 100;
+    document.getElementById("hue").value = 0;
+    document.getElementById("saturation").value = 100;
+    document.getElementById("redRange").value = 0;
+    document.getElementById("greenRange").value = 0;
+    document.getElementById("blueRange").value = 0;
+
+    // Gọi lại các hàm cập nhật để áp dụng giá trị mới
+    updateFilters(); // Cập nhật lại màu sắc
+    resetCanvas();   // Reset lại ảnh về ban đầu
+
+});
