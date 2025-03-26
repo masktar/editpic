@@ -192,8 +192,8 @@ input[type="file"] {
 /* Tạo button custom */
 .custom-file-upload {
   display: inline-block;
-  padding: 10px 20px;
-  background-color: #3498db;  /* Màu xanh dương */
+  padding: 8.4px 20px;
+  background-color: #3498db; 
   color: white;
   font-size: 16px;
   border-radius: 5px;
@@ -204,4 +204,188 @@ input[type="file"] {
 /* Hover hiệu ứng */
 .custom-file-upload:hover {
   background-color: #2980b9;
+}
+/* Thiết lập thanh trượt màu sắc */
+input[type="range"] {
+  width: 100%;
+  margin: 10px 0;
+}
+/* Tạo kiểu cho thanh trượt */
+input[type="range"] {
+    /* -webkit-appearance: none; */
+    width: 100%;
+    height: 8px;
+    border-radius: 5px;
+    outline: none;
+    opacity: 0.9;
+    transition: opacity 0.2s;
+}
+
+/* Khi rê chuột vào thanh trượt */
+input[type="range"]:hover {
+    opacity: 1;
+}
+
+/* Kiểu dáng của thanh trượt trên Chrome */
+input[type="range"]::-webkit-slider-runnable-track {
+    height: 8px;
+    border-radius: 5px;
+    background: linear-gradient(to right, blue, white, yellow);
+}
+
+/* Kiểu dáng của nút kéo trên Chrome */
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    background: white;
+    border: 2px solid black;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-top: -4px;
+}
+
+/* Kiểu thanh trượt của Firefox */
+input[type="range"]::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    background: white;
+    border: 2px solid black;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* Kiểu nút reset */
+.reset-btn {
+    background: white;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 5px;
+}
+
+/* Kiểu cho icon */
+.reset-btn img {
+    width: 20px;
+    height: 20px;
+}
+
+/* Container chứa các thanh trượt */
+.slider-container {
+    width: 90%;
+    margin: auto;
+}
+
+/* Kiểu chữ và khoảng cách */
+.label {
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+/* Tạo màu cho từng thanh trượt */
+#temperature::-webkit-slider-runnable-track {
+    background: linear-gradient(to right, blue, white, yellow);
+}
+
+#tint::-webkit-slider-runnable-track {
+    background: linear-gradient(to right, green, white, purple);
+}
+
+#hue::-webkit-slider-runnable-track {
+    background: linear-gradient(to right, red, yellow, green, cyan, blue, magenta, red);
+}
+
+#saturation::-webkit-slider-runnable-track {
+    background: linear-gradient(to right, black, white);
+}
+
+/* Điều chỉnh khoảng cách */
+.slider-container input {
+    margin: 5px 0;
+}
+
+/* Chỉnh màu cho các nút chọn màu */
+.color-radio {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-top: 10px;
+}
+
+/* Ẩn radio button mặc định */
+.color-radio input {
+    display: none;
+}
+
+/* Tạo hình tròn cho nút chọn */
+.color-radio label {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+    border: 2px solid black;
+}
+
+/* Thanh trượt màu */
+#redRange::-webkit-slider-runnable-track {
+  background: linear-gradient(to right, cyan, red);
+}
+
+#greenRange::-webkit-slider-runnable-track {
+  background: linear-gradient(to right, magenta, green);
+}
+
+#blueRange::-webkit-slider-runnable-track {
+  background: linear-gradient(to right, yellow, blue);
+}
+
+#redRange::-moz-range-track {
+  background: linear-gradient(to right, cyan, red);
+}
+
+#greenRange::-moz-range-track {
+  background: linear-gradient(to right, magenta, green);
+}
+
+#blueRange::-moz-range-track {
+  background: linear-gradient(to right, yellow, blue);
+}
+
+.button-group {
+  display: flex;
+  justify-content: center; /* Căn giữa các nút */
+  align-items: center; /* Đảm bảo cùng chiều cao */
+  gap: 10px; /* Khoảng cách giữa hai nút */
+}
+
+/* .custom-file-upload,  */
+#resetAllBtn {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.custom-file-upload {
+  background-color: #3498db;
+  color: white;
+}
+
+.custom-file-upload:hover {
+  background-color: #2980b9;
+}
+
+#resetAllBtn {
+  background-color: red;
+  color: white;
+}
+
+#resetAllBtn:hover {
+  background-color: #c82333;
 }
