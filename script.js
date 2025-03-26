@@ -312,6 +312,63 @@ function adjustRed() {
     ctx.putImageData(imageData, 0, 0);
 }
 
+function adjustGreen() {
+    let greenValue = parseInt(document.getElementById("greenRange").value);
+    let canvas = document.getElementById("canvas");
+    let ctx = canvas.getContext("2d");
+
+    let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    let data = imageData.data;
+
+    for (let i = 0; i < data.length; i += 4) {
+        data[i] = Math.min(255, Math.max(0, data[i] + greenValue)); // 🟢 Điều chỉnh Green
+    }
+
+    ctx.putImageData(imageData, 0, 0);
+}
+
+function adjustBlue() {
+    let blueValue = parseInt(document.getElementById("blueRange").value);
+    let canvas = document.getElementById("canvas");
+    let ctx = canvas.getContext("2d");
+
+    let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    let data = imageData.data;
+
+    for (let i = 0; i < data.length; i += 4) {
+        data[i] = Math.min(255, Math.max(0, data[i] + blueValue)); // 🔵 Điều chỉnh Blue
+    }
+
+    ctx.putImageData(imageData, 0, 0);
+}
+
+function adjustColor() {
+    let redValue = parseInt(document.getElementById("redRange").value);
+    let greenValue = parseInt(document.getElementById("greenRange").value);
+    let blueValue = parseInt(document.getElementById("blueRange").value);
+
+    let canvas = document.getElementById("canvas");
+    let ctx = canvas.getContext("2d");
+
+    let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    let data = imageData.data;
+
+    for (let i = 0; i < data.length; i += 4) {
+        // Điều chỉnh từng kênh màu
+        let adjustment = (redValue + greenValue + blueValue) / 3; 
+
+        data[i] = Math.min(255, Math.max(0, data[i] + adjustment));     // 🔴 Kênh đỏ
+        data[i + 1] = Math.min(255, Math.max(0, data[i + 1] + adjustment)); // 🟢 Kênh xanh lá
+        data[i + 2] = Math.min(255, Math.max(0, data[i + 2] + adjustment)); // 🔵 Kênh xanh dương
+    }
+
+    ctx.putImageData(imageData, 0, 0);
+}
+document.getElementById("redRange").addEventListener("input", adjustColor);
+document.getElementById("greenRange").addEventListener("input", adjustGreen);
+document.getElementById("blueRange").addEventListener("input", adjustBlue);
+
+
 document.getElementById("resetAllBtn").addEventListener("click", function () {
     // Reset các thanh trượt về giá trị mặc định
     document.querySelectorAll("input[type='range']").forEach(slider => {
