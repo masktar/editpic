@@ -4,6 +4,17 @@ body {
   text-align: center; 
 }
 
+/* Thiết lập nền gradient giống hình */
+body {
+  background: linear-gradient(145deg, #b50098, #2f007a);
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Ngăn chặn cuộn nếu có */
+}
+
 .container {
   display: flex;
   justify-content: space-between;
@@ -35,16 +46,20 @@ canvas {
 
 /* Bên phải: Công cụ */
 .tools {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 10px;
-  border-left: 2px solid #ddd;
+  /* background: linear-gradient(135deg, #300661, #94007f); */
+  background-color: #733b97;
+  padding: 20px;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 400px;
+  text-align: left;
+  box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.05);
+  
 }
 
 .slider-container {
   width: 100%;
+  margin-bottom: 15px;
 }
 
 .slider-container label {
@@ -57,40 +72,6 @@ input[type="range"] {
   width: 100%;
 }
 
-#downloadBtn {
-  width: 100%;
-  padding: 10px;
-  background-color: #28a745;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-  margin-top: 10px;
-}
-
-#downloadBtn:hover {
-  background-color: #218838;
-}
-
-/* Responsive: Hiển thị dọc trên mobile */
-@media (max-width: 768px) {
-  .container {
-      flex-direction: column;
-      align-items: center;
-  }
-
-  #preview-container,
-  .tools {
-      width: 100%;
-  }
-
-  .tools {
-      border-left: none;
-      border-top: 2px solid #ddd;
-      padding-top: 20px;
-  }
-}
 .control {
   display: flex;
   align-items: center;
@@ -108,16 +89,32 @@ input[type="range"] {
 }
 
 .reset-icon {
-  background: none;
-  border: none;
-  font-size: 18px;
+  background: none; /* Bỏ nền */
+  border: none; /* Bỏ viền */
   cursor: pointer;
-  transition: 0.3s;
+  font-size: 20px; /* Điều chỉnh kích thước icon */
+  color: #fff; /* Đổi màu icon nếu cần */
+  transition: transform 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto; /* Loại bỏ kích thước cố định */
+  height: auto;
+  padding: 0;
 }
 
 .reset-icon:hover {
-  color: red;
+  transform: rotate(360deg);
 }
+
+
+/* Fix nếu bị lệch so với thanh trượt */
+.range-group {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Khoảng cách giữa slider và reset icon */
+}
+
 
 /* Căn chỉnh các thanh trượt */
 input[type="range"] {
@@ -189,22 +186,66 @@ input[type="file"] {
   display: none;
 }
 
-/* Tạo button custom */
-.custom-file-upload {
-  display: inline-block;
-  padding: 8.4px 20px;
-  background-color: #3498db; 
-  color: white;
+.button-group {
+  display: flex;
+  justify-content: center; /* Căn giữa */
+  align-items: center; /* Giữ các nút cùng độ cao */
+  gap: 10px; /* Khoảng cách giữa nút */
+  width: 100%; /* Đảm bảo nhóm nút chiếm đủ chiều rộng */
+}
+
+.custom-file-upload, .resetAllBtn {
+  display: flex; /* Chuyển thành flex để căn giữa nội dung */
+  align-items: center;
+  justify-content: center;
+  width: 160px; /* Đặt chiều rộng cố định để đồng nhất */
+  height: 40px; /* Đảm bảo chiều cao giống nhau */
+  padding: 10px 20px;
   font-size: 16px;
-  border-radius: 5px;
+  border-radius: 20px;
   cursor: pointer;
   transition: 0.3s;
 }
 
-/* Hover hiệu ứng */
-.custom-file-upload:hover {
-  background-color: #2980b9;
+/* Gradient nền */
+.custom-file-upload {
+  background: linear-gradient(90deg, #240554, #60026b);
+  color: white;
+  border: none;
 }
+
+.resetAllBtn {
+  background: linear-gradient(90deg, #a50000, #ff0000);
+  color: white;
+  border: none;
+}
+
+/* Hover */
+.custom-file-upload:hover {
+  background: linear-gradient(90deg, #3a0073, #8000a2);
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2); /* Giữ shadow nhẹ */
+  transform: translateY(-2px);
+}
+
+.resetAllBtn:hover {
+  background: linear-gradient(90deg, #820000, #d60000);
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2); /* Giữ shadow nhẹ */
+  transform: translateY(-2px);
+}
+
+
+/* Nút bấm */
+/* button {
+  background: linear-gradient(45deg, #FF008A, #FF4D4D);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+} */
+
+
 /* Thiết lập thanh trượt màu sắc */
 input[type="range"] {
   width: 100%;
@@ -354,38 +395,101 @@ input[type="range"]::-moz-range-thumb {
   background: linear-gradient(to right, yellow, blue);
 }
 
-.button-group {
-  display: flex;
-  justify-content: center; /* Căn giữa các nút */
-  align-items: center; /* Đảm bảo cùng chiều cao */
-  gap: 10px; /* Khoảng cách giữa hai nút */
+
+/* Canvas chỉnh sửa ảnh */
+#canvas {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  /* margin: 20px auto; */
+  height: 70vh;
 }
 
-/* .custom-file-upload,  */
-#resetAllBtn {
-  display: inline-block;
-  padding: 10px 20px;
-  font-size: 16px;
-  border: none;
+/* Hộp điều khiển */
+.controls {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 15px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+/* Các nhóm chỉnh màu */
+.control-group {
+  margin-bottom: 15px;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+/* Thanh trượt */
+input[type="range"] {
+  width: 100%;
+  appearance: none;
+  background: linear-gradient(to right, green, yellow, magenta);
   border-radius: 5px;
+  height: 5px;
+}
+
+/* button:hover {
+  background: linear-gradient(45deg, #FF4D4D, #FF008A);
+} */
+
+.dlb {
+  position: relative;
+  background: linear-gradient(90deg, #fe0076, #fe00c4);
+  width: 100%;
+  padding: 10px;
+  color: white;
+  border: none;
+  border-radius: 20px;
   cursor: pointer;
-  transition: 0.3s;
+  font-size: 16px;
+  margin-top: 10px;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+  z-index: 1;
 }
 
-.custom-file-upload {
-  background-color: #3498db;
-  color: white;
+.dlb::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #fe00c4, #fe0076);
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out;
+  border-radius: 20px;
+  z-index: -1;
 }
 
-.custom-file-upload:hover {
-  background-color: #2980b9;
+.dlb:hover {
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2); /* Giữ shadow nhẹ */
+  transform: translateY(-2px);
 }
 
-#resetAllBtn {
-  background-color: red;
-  color: white;
+.dlb:hover::before {
+  opacity: 1;
 }
 
-#resetAllBtn:hover {
-  background-color: #c82333;
+
+
+/* Responsive: Hiển thị dọc trên mobile */
+@media (max-width: 768px) {
+  .container {
+      flex-direction: column;
+      align-items: center;
+  }
+
+  #preview-container,
+  .tools {
+      width: 100%;
+  }
+
+  .tools {
+      border-left: none;
+      border-top: 2px solid #ddd;
+      padding-top: 20px;
+  }
 }
