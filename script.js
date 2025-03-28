@@ -321,7 +321,7 @@ function adjustGreen() {
     let data = imageData.data;
 
     for (let i = 0; i < data.length; i += 4) {
-        data[i] = Math.min(255, Math.max(0, data[i] + greenValue)); // 🟢 Điều chỉnh Green
+        data[i+1] = Math.min(255, Math.max(0, data[i+1] + greenValue)); // 🟢 Điều chỉnh Green
     }
 
     ctx.putImageData(imageData, 0, 0);
@@ -336,7 +336,7 @@ function adjustBlue() {
     let data = imageData.data;
 
     for (let i = 0; i < data.length; i += 4) {
-        data[i] = Math.min(255, Math.max(0, data[i] + blueValue)); // 🔵 Điều chỉnh Blue
+        data[i+2] = Math.min(255, Math.max(0, data[i+2] + blueValue)); // 🔵 Điều chỉnh Blue
     }
 
     ctx.putImageData(imageData, 0, 0);
@@ -369,7 +369,8 @@ document.getElementById("greenRange").addEventListener("input", adjustGreen);
 document.getElementById("blueRange").addEventListener("input", adjustBlue);
 
 
-document.getElementById("resetAllBtn").addEventListener("click", function () {
+document.querySelector(".resetAllBtn").addEventListener("click", function ()
+    {
     // Reset các thanh trượt về giá trị mặc định
     document.querySelectorAll("input[type='range']").forEach(slider => {
         slider.value = slider.defaultValue || slider.min;
