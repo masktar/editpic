@@ -1,24 +1,20 @@
-body { 
-  font-family: Arial, sans-serif; 
-  margin: 20px; 
-  text-align: center; 
-}
-
-/* Thiết lập nền gradient giống hình */
 body {
+  font-family: 'Poppins', sans-serif;
   background: linear-gradient(145deg, #b50098, #2f007a);
   color: white;
-  font-family: 'Poppins', sans-serif;
-  height: 100vh;
   margin: 0;
   padding: 0;
-  overflow: hidden; /* Ngăn chặn cuộn nếu có */
+  text-align: center;
+  height: 100vh;
+  overflow-y: auto; /* Cho phép cuộn xuống */
 }
 
+/* Layout tổng thể */
 .container {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: flex-start;
+  flex-wrap: wrap;
   max-width: 90%;
   margin: auto;
   gap: 20px;
@@ -28,6 +24,10 @@ body {
 #preview-container {
   flex: 2;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 65%;
 }
 
 canvas {
@@ -35,155 +35,23 @@ canvas {
   margin: auto;
   max-width: 100%;
   height: auto;
-  display: block;
   background: #f0f0f0;
   border-radius: 10px;
-  max-width: 60vw; /* Không quá 60% chiều rộng viewport */
-  max-height: 90vh; /* Không quá 70% chiều cao viewport */
-  display: block;
-  margin: auto; /* Căn giữa */
+  object-fit: contain;
 }
 
 /* Bên phải: Công cụ */
 .tools {
-  /* background: linear-gradient(135deg, #300661, #94007f); */
+  flex: 1;
+  min-width: 250px;
+  max-width: 35%; /* Không quá 35% màn hình */
   background-color: #733b97;
   padding: 20px;
   border-radius: 15px;
-  width: 90%;
-  max-width: 400px;
   text-align: left;
   box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.05);
+  overflow-y: auto; 
   
-}
-
-.slider-container {
-  width: 100%;
-  margin-bottom: 15px;
-}
-
-.slider-container label {
-  display: block;
-  margin: 10px 0 5px;
-  font-weight: bold;
-}
-
-input[type="range"] {
-  width: 100%;
-}
-
-.control {
-  display: flex;
-  align-items: center;
-  margin: 10px 0;
-}
-
-.control label {
-  width: 120px;
-  text-align: left;
-}
-
-.control input[type="range"] {
-  flex: 1;
-  margin: 0 10px;
-}
-
-.reset-icon {
-  background: none; /* Bỏ nền */
-  border: none; /* Bỏ viền */
-  cursor: pointer;
-  font-size: 20px; /* Điều chỉnh kích thước icon */
-  color: #fff; /* Đổi màu icon nếu cần */
-  transition: transform 0.3s ease;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: auto; /* Loại bỏ kích thước cố định */
-  height: auto;
-  padding: 0;
-}
-
-.reset-icon:hover {
-  transform: rotate(360deg);
-}
-
-
-/* Fix nếu bị lệch so với thanh trượt */
-.range-group {
-    display: flex;
-    align-items: center;
-    gap: 10px; /* Khoảng cách giữa slider và reset icon */
-}
-
-
-/* Căn chỉnh các thanh trượt */
-input[type="range"] {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 100%;
-  height: 8px;
-  border-radius: 5px;
-  outline: none;
-  margin: 10px 0;
-}
-
-/* Đảm bảo màu nền chỉ áp dụng cho đúng thanh trượt */
-.temperature-slider {
-  background: linear-gradient(to right, blue, white, yellow);
-}
-
-.contrast-slider {
-  background: linear-gradient(to right, black, white);
-}
-
-.hue-slider {
-  background: linear-gradient(to right, red, yellow, green, cyan, blue, magenta, red);
-}
-
-.saturation-slider {
-  background: linear-gradient(to right, gray, rgb(255, 0, 255));
-}
-
-.brightness-slider {
-  background: linear-gradient(to right, black, white);
-}
-
-/* Tùy chỉnh nút trượt */
-input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  width: 16px;
-  height: 16px;
-  background: white;
-  border-radius: 50%;
-  cursor: pointer;
-  border: 1px solid gray;
-}
-
-input[type="range"]::-moz-range-thumb {
-  width: 16px;
-  height: 16px;
-  background: white;
-  border-radius: 50%;
-  cursor: pointer;
-  border: 1px solid gray;
-}
-/* Độ sáng: từ đen đến trắng */
-.brightness-slider {
-  background: linear-gradient(to right, black, white);
-}
-
-/* Độ bão hòa: từ trắng đến đen */
-.saturation-slider {
-  background: linear-gradient(to right, white, black);
-}
-/* Tint: từ xanh lá đến tím */
-.tint-slider {
-  background: linear-gradient(to right, green, purple);
-}
-
-/* Ẩn input file gốc */
-input[type="file"] {
-  display: none;
 }
 
 .button-group {
@@ -234,140 +102,90 @@ input[type="file"] {
 }
 
 
-/* Nút bấm */
-/* button {
-  background: linear-gradient(45deg, #FF008A, #FF4D4D);
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: 0.3s;
-} */
-
-
-/* Thiết lập thanh trượt màu sắc */
-input[type="range"] {
+.slider-container {
   width: 100%;
+  margin-bottom: 15px;
+}
+
+.slider-container label {
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: bold;
+}
+
+.control {
+  display: flex;
+  align-items: center;
   margin: 10px 0;
 }
-/* Tạo kiểu cho thanh trượt */
+
+.control label {
+  width: 120px;
+  text-align: left;
+}
+
+.control input[type="range"] {
+  flex: 1;
+  margin: 0 10px;
+}
+
+
 input[type="range"] {
-    /* -webkit-appearance: none; */
-    width: 100%;
-    height: 8px;
-    border-radius: 5px;
-    outline: none;
-    opacity: 0.9;
-    transition: opacity 0.2s;
+  width: 100%;
 }
 
-/* Khi rê chuột vào thanh trượt */
-input[type="range"]:hover {
-    opacity: 1;
+
+
+
+
+/* Fix nếu bị lệch so với thanh trượt */
+.range-group {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Khoảng cách giữa slider và reset icon */
 }
 
-/* Kiểu dáng của thanh trượt trên Chrome */
-input[type="range"]::-webkit-slider-runnable-track {
-    height: 8px;
-    border-radius: 5px;
-    background: linear-gradient(to right, blue, white, yellow);
-}
 
-/* Kiểu dáng của nút kéo trên Chrome */
-input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 16px;
-    height: 16px;
-    background: white;
-    border: 2px solid black;
-    border-radius: 50%;
-    cursor: pointer;
-    margin-top: -4px;
-}
-
-/* Kiểu thanh trượt của Firefox */
-input[type="range"]::-moz-range-thumb {
-    width: 16px;
-    height: 16px;
-    background: white;
-    border: 2px solid black;
-    border-radius: 50%;
-    cursor: pointer;
-}
-
-/* Kiểu nút reset */
-.reset-btn {
-    background: white;
-    border: none;
-    font-size: 18px;
-    cursor: pointer;
-    padding: 5px;
-}
-
-/* Kiểu cho icon */
-.reset-btn img {
-    width: 20px;
-    height: 20px;
+/* Căn chỉnh các thanh trượt */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 8px;
+  border-radius: 5px;
+  outline: none;
+  margin: 10px 0;
 }
 
 /* Container chứa các thanh trượt */
 .slider-container {
-    width: 90%;
-    margin: auto;
+  width: 90%;
+  margin: auto;
 }
 
-/* Kiểu chữ và khoảng cách */
-.label {
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-}
-
-/* Tạo màu cho từng thanh trượt */
+/* Đảm bảo màu nền chỉ áp dụng cho đúng thanh trượt */
 #temperature::-webkit-slider-runnable-track {
-    background: linear-gradient(to right, blue, white, yellow);
+  background: linear-gradient(to right, blue, white, yellow);
 }
 
-#tint::-webkit-slider-runnable-track {
-    background: linear-gradient(to right, green, white, purple);
+#contrast::-webkit-slider-runnable-track {
+  background: linear-gradient(to right, white, black) ;
 }
 
 #hue::-webkit-slider-runnable-track {
-    background: linear-gradient(to right, red, yellow, green, cyan, blue, magenta, red);
+  background: linear-gradient(to right, red, yellow, green, cyan, blue, magenta, red);
 }
 
 #saturation::-webkit-slider-runnable-track {
-    background: linear-gradient(to right, black, white);
+  background: linear-gradient(to right, black, white);
 }
 
-/* Điều chỉnh khoảng cách */
-.slider-container input {
-    margin: 5px 0;
+#brightness::-webkit-slider-runnable-track {
+  background: linear-gradient(to right, black, white) ;
 }
 
-/* Chỉnh màu cho các nút chọn màu */
-.color-radio {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    margin-top: 10px;
-}
-
-/* Ẩn radio button mặc định */
-.color-radio input {
-    display: none;
-}
-
-/* Tạo hình tròn cho nút chọn */
-.color-radio label {
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    display: inline-block;
-    cursor: pointer;
-    border: 2px solid black;
+#tint::-webkit-slider-runnable-track {
+  background: linear-gradient(to right, purple, white, green);
 }
 
 /* Thanh trượt màu */
@@ -395,6 +213,70 @@ input[type="range"]::-moz-range-thumb {
   background: linear-gradient(to right, yellow, blue);
 }
 
+.reset-icon {
+  background: none; /* Bỏ nền */
+  border: none; /* Bỏ viền */
+  cursor: pointer;
+  font-size: 20px; /* Điều chỉnh kích thước icon */
+  color: #fff; /* Đổi màu icon nếu cần */
+  transition: transform 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto; /* Loại bỏ kích thước cố định */
+  height: auto;
+  padding: 0;
+}
+
+.reset-icon:hover {
+  transform: rotate(360deg);
+}
+
+
+/* Tùy chỉnh nút trượt */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  background: white;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 1px solid gray;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: white;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 1px solid gray;
+}
+
+/* Ẩn input file gốc */
+input[type="file"] {
+  display: none;
+}
+
+/* Kiểu dáng của thanh trượt trên Chrome */
+input[type="range"]::-webkit-slider-runnable-track {
+    height: 8px;
+    border-radius: 5px;
+    background: linear-gradient(to right, blue, white, yellow);
+}
+
+/* Kiểu dáng của nút kéo trên Chrome */
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    background: white;
+    border: 2px solid black;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-top: -4px;
+}
 
 /* Canvas chỉnh sửa ảnh */
 #canvas {
@@ -491,5 +373,22 @@ input[type="range"] {
       border-left: none;
       border-top: 2px solid #ddd;
       padding-top: 20px;
+  }
+}
+
+/* Khi màn hình nhỏ hơn 1024px */
+@media (max-width: 1024px) {
+  body {
+    height: auto;
+  }
+
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #preview-container,
+  .tools {
+    max-width: 100%;
   }
 }
