@@ -22,14 +22,23 @@ let img = new Image();
 let history = [];
 let historyIndex = -1;
 
+document.getElementById("fileInput").addEventListener("change", function (event) {
+    const file = event.target.files[0]; // Lấy file đã chọn
 
-imageInput.addEventListener("change", function(event) {
-    const file = event.target.files[0];
     if (file) {
         const reader = new FileReader();
-        reader.onload = function(e) {
+        reader.onload = function (e) {
+            const img = new Image();
             img.src = e.target.result;
-            // resetFilters(); 
+            img.onload = function () {
+                // Hiển thị ảnh lên canvas (nếu bạn dùng canvas)
+                const canvas = document.getElementById("canvas");
+                const ctx = canvas.getContext("2d");
+
+                canvas.width = img.width;
+                canvas.height = img.height;
+                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+            };
         };
         reader.readAsDataURL(file);
     }
