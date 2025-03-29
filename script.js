@@ -229,7 +229,6 @@ document.querySelector(".resetAllBtn").addEventListener("click", function ()
 
     // Gọi lại các hàm cập nhật để áp dụng giá trị mới
     updateFilters(); // Cập nhật lại màu sắc
-    resetCanvas();   // Reset lại ảnh về ban đầu
 
 });
 
