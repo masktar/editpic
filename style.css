@@ -1,12 +1,33 @@
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
   background: linear-gradient(145deg, #b50098, #2f007a);
   color: white;
   margin: 0;
+  margin-top: 75px;
   padding: 0;
   text-align: center;
   height: 100vh;
-  overflow-y: auto; /* Cho phép cuộn xuống */
+  overflow-y: auto;
+  /* Cho phép cuộn xuống */
+}
+
+.button-group button,
+.dlb,
+/* Export button */
+.custom-file-upload,
+.resetAllBtn {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  /* Bold */
+}
+
+/* Đảm bảo các nhãn (label, h3) và chữ trong slider giữ Light */
+h3,
+label,
+.slider-container label {
+  font-weight: 300 !important;
+  /* Light */
 }
 
 /* Layout tổng thể */
@@ -30,44 +51,95 @@ body {
   max-width: 65%;
 }
 
+/* Canvas chỉnh sửa ảnh */
+#canvas {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  /* margin: 20px auto; */
+  height: 70vh;
+}
+
 canvas {
   display: block;
   margin: auto;
   max-width: 100%;
-  height: auto;
-  background: #f0f0f0;
-  border-radius: 10px;
   object-fit: contain;
 }
 
+.left-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Đẩy logo xuống dưới */
+  height: 100%;
+  position: relative;
+}
+
+.logo-container {
+  position: absolute;
+  bottom: -20px; /* Đẩy logo ra ngoài khung */
+  left: 10px; /* Căn trái */
+  transform: none;
+  text-align: left;
+  width: 15%; /* Đảm bảo logo có kích thước linh hoạt */
+  min-width: 100px; /* Đặt kích thước tối thiểu */
+  max-width: 200px; /* Đặt kích thước tối đa */
+}
+
+.logo-container img {
+  width: 100%; /* Giúp ảnh co giãn theo container */
+  max-width: 300px; /* Giới hạn kích thước tối đa */
+  height: auto;
+}
+
+
 /* Bên phải: Công cụ */
 .tools {
+  margin-left: 25px;
   flex: 1;
   min-width: 250px;
-  max-width: 35%; /* Không quá 35% màn hình */
+  max-width: 25%;
+  /* Không quá 35% màn hình */
   background-color: #733b97;
   padding: 20px;
   border-radius: 15px;
   text-align: left;
-  box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.05);
-  overflow-y: auto; 
-  
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  overflow-y: auto;
+
+}
+
+.slider-group {
+  background: linear-gradient(165deg, #920080, #350061);
+  margin-top: 15px;
+  border-radius: 10px;
+  padding: 0px 20px 0.5px 20px;
+  margin-bottom: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .button-group {
   display: flex;
-  justify-content: center; /* Căn giữa */
-  align-items: center; /* Giữ các nút cùng độ cao */
-  gap: 10px; /* Khoảng cách giữa nút */
-  width: 100%; /* Đảm bảo nhóm nút chiếm đủ chiều rộng */
+  justify-content: center;
+  /* Căn giữa */
+  align-items: center;
+  /* Giữ các nút cùng độ cao */
+  gap: 10px;
+  /* Khoảng cách giữa nút */
+  width: 100%;
+  /* Đảm bảo nhóm nút chiếm đủ chiều rộng */
 }
 
-.custom-file-upload, .resetAllBtn {
-  display: flex; /* Chuyển thành flex để căn giữa nội dung */
+.custom-file-upload,
+.resetAllBtn {
+  display: flex;
+  /* Chuyển thành flex để căn giữa nội dung */
   align-items: center;
   justify-content: center;
-  width: 160px; /* Đặt chiều rộng cố định để đồng nhất */
-  height: 40px; /* Đảm bảo chiều cao giống nhau */
+  width: 160px;
+  /* Đặt chiều rộng cố định để đồng nhất */
+  height: 40px;
+  /* Đảm bảo chiều cao giống nhau */
   padding: 10px 20px;
   font-size: 16px;
   border-radius: 20px;
@@ -91,13 +163,15 @@ canvas {
 /* Hover */
 .custom-file-upload:hover {
   background: linear-gradient(90deg, #3a0073, #8000a2);
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2); /* Giữ shadow nhẹ */
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+  /* Giữ shadow nhẹ */
   transform: translateY(-2px);
 }
 
 .resetAllBtn:hover {
   background: linear-gradient(90deg, #820000, #d60000);
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2); /* Giữ shadow nhẹ */
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+  /* Giữ shadow nhẹ */
   transform: translateY(-2px);
 }
 
@@ -109,7 +183,7 @@ canvas {
 
 .slider-container label {
   display: block;
-  margin: 10px 0 5px;
+  margin: 15px 0 5px;
   font-weight: bold;
 }
 
@@ -135,16 +209,13 @@ input[type="range"] {
 }
 
 
-
-
-
 /* Fix nếu bị lệch so với thanh trượt */
 .range-group {
-    display: flex;
-    align-items: center;
-    gap: 10px; /* Khoảng cách giữa slider và reset icon */
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  /* Khoảng cách giữa slider và reset icon */
 }
-
 
 /* Căn chỉnh các thanh trượt */
 input[type="range"] {
@@ -169,7 +240,7 @@ input[type="range"] {
 }
 
 #contrast::-webkit-slider-runnable-track {
-  background: linear-gradient(to right, white, black) ;
+  background: linear-gradient(to right, white, black);
 }
 
 #hue::-webkit-slider-runnable-track {
@@ -181,7 +252,7 @@ input[type="range"] {
 }
 
 #brightness::-webkit-slider-runnable-track {
-  background: linear-gradient(to right, black, white) ;
+  background: linear-gradient(to right, black, white);
 }
 
 #tint::-webkit-slider-runnable-track {
@@ -214,16 +285,21 @@ input[type="range"] {
 }
 
 .reset-icon {
-  background: none; /* Bỏ nền */
-  border: none; /* Bỏ viền */
+  background: none;
+  /* Bỏ nền */
+  border: none;
+  /* Bỏ viền */
   cursor: pointer;
-  font-size: 20px; /* Điều chỉnh kích thước icon */
-  color: #fff; /* Đổi màu icon nếu cần */
+  font-size: 20px;
+  /* Điều chỉnh kích thước icon */
+  color: #fff;
+  /* Đổi màu icon nếu cần */
   transition: transform 0.3s ease;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: auto; /* Loại bỏ kích thước cố định */
+  width: auto;
+  /* Loại bỏ kích thước cố định */
   height: auto;
   padding: 0;
 }
@@ -260,31 +336,22 @@ input[type="file"] {
 
 /* Kiểu dáng của thanh trượt trên Chrome */
 input[type="range"]::-webkit-slider-runnable-track {
-    height: 8px;
-    border-radius: 5px;
-    background: linear-gradient(to right, blue, white, yellow);
+  height: 8px;
+  border-radius: 5px;
+  background: linear-gradient(to right, blue, white, yellow);
 }
 
 /* Kiểu dáng của nút kéo trên Chrome */
 input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 16px;
-    height: 16px;
-    background: white;
-    border: 2px solid black;
-    border-radius: 50%;
-    cursor: pointer;
-    margin-top: -4px;
-}
-
-/* Canvas chỉnh sửa ảnh */
-#canvas {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 15px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-  /* margin: 20px auto; */
-  height: 70vh;
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: white;
+  border: 2px solid black;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-top: -4px;
 }
 
 /* Hộp điều khiển */
@@ -313,8 +380,8 @@ input[type="range"] {
 }
 
 /* button:hover {
-  background: linear-gradient(45deg, #FF4D4D, #FF008A);
-} */
+    background: linear-gradient(45deg, #FF4D4D, #FF008A);
+  } */
 
 .dlb {
   position: relative;
@@ -347,7 +414,8 @@ input[type="range"] {
 }
 
 .dlb:hover {
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2); /* Giữ shadow nhẹ */
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+  /* Giữ shadow nhẹ */
   transform: translateY(-2px);
 }
 
@@ -360,22 +428,25 @@ input[type="range"] {
 /* Responsive: Hiển thị dọc trên mobile */
 @media (max-width: 768px) {
   .container {
-      flex-direction: column;
-      align-items: center;
+    flex-direction: column;
+    align-items: center;
   }
 
   #preview-container,
   .tools {
-      width: 100%;
+    width: 100%;
   }
 
   .tools {
-      border-left: none;
-      border-top: 2px solid #ddd;
-      padding-top: 20px;
+    border-left: none;
+    border-top: 2px solid #ddd;
+    padding-top: 20px;
+  }
+  .logo-container {
+    width: 12%; /* Thu nhỏ một chút */
+    bottom: -30px;
   }
 }
-
 /* Khi màn hình nhỏ hơn 1024px */
 @media (max-width: 1024px) {
   body {
@@ -390,5 +461,13 @@ input[type="range"] {
   #preview-container,
   .tools {
     max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-container {
+    width: 10%;
+    bottom: -20px;
+    left: 5px;
   }
 }
