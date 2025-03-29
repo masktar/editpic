@@ -17,7 +17,6 @@ const temperatureValue = document.getElementById("temperatureValue");
 const tintValue = document.getElementById("tintValue");
 const sliders = document.querySelectorAll("input[type='range']");
 
-
 //upload ảnh
 let img = new Image();
 let history = [];
@@ -45,38 +44,6 @@ document.getElementById("fileInput").addEventListener("change", function (event)
     }
 });
 
-//cập nhật filters
-
-function resetFilters() {
-    document.getElementById("temperature").value = 0;
-    document.getElementById("tint").value = 0;
-    document.getElementById("brightness").value = 100;
-    document.getElementById("contrast").value = 100;
-    document.getElementById("hue").value = 0;
-    document.getElementById("saturation").value = 100;
-    document.getElementById("redRange").value = 0;
-    document.getElementById("greenRange").value = 0;
-    document.getElementById("blueRange").value = 0;
-
-    // Gọi lại các hàm cập nhật để áp dụng giá trị mới
-    // adjustImage();
-}
-
-
-imageInput.addEventListener("change", function(event) {
-    const file = event.target.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            img.src = e.target.result;
-            // resetFilters(); 
-        };
-        reader.readAsDataURL(file);
-    }
-});
-
-
-
 img.onload = function() {
     let scale = Math.min(window.innerWidth * 0.9 / img.width, window.innerHeight * 0.8 / img.height, 1);
     canvas.width = img.width * scale;
@@ -90,7 +57,7 @@ img.onload = function() {
         saturation: 100,
         hue: 0,
         temperature: 0,
-        tint: 0 // 🌟 Thêm Tint vào lịch sử
+        tint: 0 
     }];
     historyIndex = 0;
 
@@ -99,16 +66,15 @@ img.onload = function() {
     saturationSlider.value = 100;
     hueSlider.value = 0;
     temperatureSlider.value = 0;
-    tintSlider.value = 0;  // 🌟 Reset Tint về 0
+    tintSlider.value = 0;  
 };
 
 function updateFilters(saveHistory = true) {
 
-
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     
     let greenValue = parseInt(document.getElementById("greenRange").value);
-    let blueValue = parseInt(document.getElementById("blueRange").value); // ✅ Thêm giá trị Blue
+    let blueValue = parseInt(document.getElementById("blueRange").value); 
 
     let tempValue = parseInt(temperatureSlider.value);
     let tintValue = parseInt(tintSlider.value);
@@ -147,131 +113,24 @@ hueSlider.addEventListener("input", () => updateFilters());
 temperatureSlider.addEventListener("input", () => updateFilters());
 tintSlider.addEventListener("input", () => updateFilters()); // 🌟 Lắng nghe sự kiện Tint
 
-//reset ảnh
 
-function resetImage() {
-    if (history.length > 0) {
-        let initialState = history[0];
-
-        let imgReset = new Image();
-        imgReset.src = initialState.image;
-        imgReset.onload = function () {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.drawImage(imgReset, 0, 0, canvas.width, canvas.height);
-        };
-
-        brightnessSlider.value = initialState.brightness;
-        contrastSlider.value = initialState.contrast;
-        saturationSlider.value = initialState.saturation;
-        hueSlider.value = initialState.hue;
-        temperatureSlider.value = initialState.temperature;
-        tintSlider.value = initialState.tint; // 🌟 Reset Tint
-
-        historyIndex = 0;
-    }
-}
-
-//reset từng chức năng
-
-function resetSlider(id) {
-    const slider = document.getElementById(id);
-    if (slider) {
-        // Xác định giá trị mặc định của từng slider
-        let defaultValue = 100; // Mặc định cho Brightness, Contrast, Saturation
-        if (id === "hue" || id === "temperature" || id === "tint" || id === "redRange" || id === "greenRange" || id === "blueRange") {
-            defaultValue = 0; // Hue, Temperature, Tint mặc định là 0
-        }
-        slider.value = defaultValue;
-        updateFilters(); // Cập nhật bộ lọc sau khi reset
-    }
-}
-
-
-const resetButton = document.getElementById("reset-btn");
-// resetButton.addEventListener("dblclick", resetImage);
-
-//download ảnh
-
-document.getElementById("downloadBtn").addEventListener("click", function () {
-    const canvas = document.getElementById("canvas");
-    if (!canvas || !canvas.getContext) {
-        alert("Không có ảnh để tải xuống!");
-        return;
-    }
-    const link = document.createElement("a");
-    link.href = canvas.toDataURL("image/png");
-    link.download = "edited-image.png";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-});
-
-
-
-// Lặp qua từng thanh trượt để cập nhật giá trị khi kéo
-sliders.forEach(slider => {
+document.querySelectorAll("input[type='range']").forEach(slider => {
     slider.addEventListener("input", function () {
         const valueDisplay = document.getElementById(this.id + "Value");
         if (valueDisplay) {
             valueDisplay.textContent = this.value;
         }
-    });
-});
-// Lặp qua tất cả thanh trượt để cập nhật giá trị hiển thị
-document.querySelectorAll("input[type='range']").forEach(slider => {
-    slider.addEventListener("input", function () {
-        const valueDisplay = document.getElementById(this.id + "Value"); // Lấy phần tử hiển thị số
-        if (valueDisplay) {
-            valueDisplay.textContent = this.value; // Cập nhật số
-        }
         updateFilters(); // Cập nhật ảnh ngay khi kéo
     });
 });
 
-// Đảm bảo cập nhật giá trị hiển thị khi kéo thanh trượt
-document.addEventListener("DOMContentLoaded", function () {
-    const sliders = document.querySelectorAll("input[type='range']");
-
-    sliders.forEach(slider => {
-        slider.addEventListener("input", function () {
-            const valueDisplay = document.getElementById(this.id + "Value");
-            if (valueDisplay) {
-                valueDisplay.textContent = this.value; // Cập nhật số khi kéo
-            }
-        });
-    });
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-    const downloadBtn = document.getElementById("downloadBtn");
-    if (!downloadBtn) {
-        console.error("Không tìm thấy nút download!");
-        return;
-    }
-    downloadBtn.addEventListener("click", function () {
-        console.log("Nút tải ảnh đã được nhấn!");
-    });
-});
-
-document.getElementById("redRange").addEventListener("input", adjustRed);
-document.getElementById("greenRange").addEventListener("input", updateFilters);
-
-document.getElementById("redRange").addEventListener("input", function () {
-    document.getElementById("redValue").textContent = this.value;
-    adjustRed();
-});
-
-
 function adjustRed() {
-    let redValue = parseInt(document.getElementById("redRange").value);
-    let canvas = document.getElementById("canvas");
-    let ctx = canvas.getContext("2d");
-
+    let redValue = parseInt(document.getElementById("redRange").value, 10); // 🔥 Chắc chắn parse thành số
     let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
     let data = imageData.data;
 
     for (let i = 0; i < data.length; i += 4) {
-        data[i] = Math.min(255, Math.max(0, data[i] + redValue)); // Điều chỉnh Red, giữ trong khoảng [0, 255]
+        data[i] = Math.min(255, Math.max(0, data[i] + redValue)); // 🔥 Đảm bảo giá trị nằm trong khoảng [0,255]
     }
 
     ctx.putImageData(imageData, 0, 0);
@@ -330,9 +189,25 @@ function adjustColor() {
     ctx.putImageData(imageData, 0, 0);
 }
 document.getElementById("redRange").addEventListener("input", adjustColor);
+document.getElementById("redRange").addEventListener("input", adjustRed);
 document.getElementById("greenRange").addEventListener("input", adjustGreen);
 document.getElementById("blueRange").addEventListener("input", adjustBlue);
 
+
+//reset từng chức năng
+
+function resetSlider(id) {
+    const slider = document.getElementById(id);
+    if (slider) {
+        // Xác định giá trị mặc định của từng slider
+        let defaultValue = 100; // Mặc định cho Brightness, Contrast, Saturation
+        if (id === "hue" || id === "temperature" || id === "tint" || id === "redRange" || id === "greenRange" || id === "blueRange") {
+            defaultValue = 0; // Hue, Temperature, Tint mặc định là 0
+        }
+        slider.value = defaultValue;
+        updateFilters(); // Cập nhật bộ lọc sau khi reset
+    }
+}
 
 document.querySelector(".resetAllBtn").addEventListener("click", function ()
     {
@@ -368,12 +243,16 @@ document.querySelector(".resetAllBtn").addEventListener("click", function ()
 });
 
 
-function debounce(func, wait) {
-    let timeout;
-    return function (...args) {
-        clearTimeout(timeout);
-        timeout = setTimeout(() => func.apply(this, args), wait);
-    };
-}
-
-
+document.getElementById("downloadBtn").addEventListener("click", function () {
+    const canvas = document.getElementById("canvas");
+    if (!canvas || !canvas.getContext) {
+        alert("Không có ảnh để tải xuống!");
+        return;
+    }
+    const link = document.createElement("a");
+    link.href = canvas.toDataURL("image/png");
+    link.download = "edited-image.png";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+});
