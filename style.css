@@ -1,246 +1,192 @@
+/* Base styles */
 body {
   font-family: 'Montserrat', sans-serif;
   font-weight: 300;
-  background: linear-gradient(145deg, #b50098, #2f007a);
+  background: linear-gradient(135deg, #2C2C2C, #7D7D7D);
   color: white;
   margin: 0;
-  margin-top: 75px;
   padding: 0;
-  text-align: center;
-  height: 100vh;
-  overflow-y: auto;
-  /* Cho phép cuộn xuống */
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
-.button-group button,
-.dlb,
-/* Export button */
-.custom-file-upload,
-.resetAllBtn {
-  font-family: "Montserrat", sans-serif;
-  font-weight: 700;
-  /* Bold */
-}
-
-/* Đảm bảo các nhãn (label, h3) và chữ trong slider giữ Light */
-h3,
-label,
-.slider-container label {
-  font-weight: 300 !important;
-  /* Light */
-}
-
-/* Layout tổng thể */
+/* Main container */
 .container {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  flex-wrap: wrap;
-  max-width: 90%;
-  margin: auto;
-  gap: 20px;
+  gap: 30px;
+  padding: 30px;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
-/* Bên trái: Hiển thị ảnh */
+/* Preview container */
+/* Preview container */
 #preview-container {
-  flex: 2;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  max-width: 65%;
+  flex-direction: column; 
+  align-items: flex-start; 
+  gap: 20px; 
+  width: 100%; 
 }
 
-/* Canvas chỉnh sửa ảnh */
+/* Canvas styling */
 #canvas {
-  background: rgba(255, 255, 255, 0.1);
+  background-color: rgba(0, 0, 0, 0.2);
   border-radius: 15px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-  /* margin: 20px auto; */
-  height: 70vh;
-}
-
-canvas {
-  display: block;
-  margin: auto;
-  max-width: 100%;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border: 2px solid white;
+  height: 70vh; 
+  width: 100%; 
   object-fit: contain;
 }
 
-.left-panel {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between; /* Đẩy logo xuống dưới */
-  height: 100%;
-  position: relative;
-}
-
+/* Logo container styling */
 .logo-container {
-  position: absolute;
-  bottom: -20px; /* Đẩy logo ra ngoài khung */
-  left: 10px; /* Căn trái */
-  transform: none;
-  text-align: left;
-  width: 15%; /* Đảm bảo logo có kích thước linh hoạt */
-  min-width: 100px; /* Đặt kích thước tối thiểu */
-  max-width: 200px; /* Đặt kích thước tối đa */
+  display: flex;
+  justify-content: flex-start; 
+  width: 100%;
+  max-width: 200px; 
 }
 
 .logo-container img {
-  width: 100%; /* Giúp ảnh co giãn theo container */
-  max-width: 300px; /* Giới hạn kích thước tối đa */
-  height: auto;
+  width: 100%; /* Adjust size as needed */
+  height: auto; /* Maintain aspect ratio */
 }
 
-
-/* Bên phải: Công cụ */
+/* Tools section - gap removed */
 .tools {
-  margin-left: 25px;
   flex: 1;
-  min-width: 250px;
-  max-width: 25%;
-  /* Không quá 35% màn hình */
-  background-color: #733b97;
-  padding: 20px;
+  max-width: 350px;
+  display: flex;
+  flex-direction: column;
   border-radius: 15px;
-  text-align: left;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-  overflow-y: auto;
-
+  padding: 20px;
 }
 
-.slider-group {
-  background: linear-gradient(165deg, #920080, #350061);
-  margin-top: 15px;
-  border-radius: 10px;
-  padding: 0px 20px 0.5px 20px;
-  margin-bottom: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-}
-
+/* Button group */
 .button-group {
   display: flex;
-  justify-content: center;
-  /* Căn giữa */
-  align-items: center;
-  /* Giữ các nút cùng độ cao */
-  gap: 10px;
-  /* Khoảng cách giữa nút */
-  width: 100%;
-  /* Đảm bảo nhóm nút chiếm đủ chiều rộng */
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 20px;
 }
 
 .custom-file-upload,
 .resetAllBtn {
-  display: flex;
-  /* Chuyển thành flex để căn giữa nội dung */
-  align-items: center;
-  justify-content: center;
-  width: 160px;
-  /* Đặt chiều rộng cố định để đồng nhất */
-  height: 40px;
-  /* Đảm bảo chiều cao giống nhau */
-  padding: 10px 20px;
-  font-size: 16px;
+  flex: 1;
+  padding: 12px 20px;
   border-radius: 20px;
+  border: none;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
   cursor: pointer;
-  transition: 0.3s;
+  transition: all 0.3s ease;
 }
 
-/* Gradient nền */
 .custom-file-upload {
-  background: linear-gradient(90deg, #240554, #60026b);
+  background-color: rgba(0, 0, 0, 0.3);
   color: white;
-  border: none;
 }
 
 .resetAllBtn {
-  background: linear-gradient(90deg, #a50000, #ff0000);
-  color: white;
-  border: none;
+  background-color: #D9D9D9;
+  color: #000;
 }
 
-/* Hover */
-.custom-file-upload:hover {
-  background: linear-gradient(90deg, #3a0073, #8000a2);
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
-  /* Giữ shadow nhẹ */
-  transform: translateY(-2px);
-}
-
+.custom-file-upload:hover,
 .resetAllBtn:hover {
-  background: linear-gradient(90deg, #820000, #d60000);
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
-  /* Giữ shadow nhẹ */
   transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-
+/* Slider container - gap removed */
 .slider-container {
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Slider groups */
+.slider-group {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   margin-bottom: 15px;
 }
 
-.slider-container label {
-  display: block;
-  margin: 15px 0 5px;
-  font-weight: bold;
-}
-
+/* Control rows */
 .control {
   display: flex;
   align-items: center;
-  margin: 10px 0;
+  margin-bottom: 15px;
+}
+
+.control:last-child {
+  margin-bottom: 0;
 }
 
 .control label {
-  width: 120px;
-  text-align: left;
+  width: 100px;
+  font-size: 14px;
 }
 
-.control input[type="range"] {
+/* Range inputs */
+input[type="range"] {
+  -webkit-appearance: none;
   flex: 1;
+  height: 8px;
+  border-radius: 4px;
+  outline: none;
   margin: 0 10px;
 }
 
-
-input[type="range"] {
-  width: 100%;
-}
-
-
-/* Fix nếu bị lệch so với thanh trượt */
-.range-group {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  /* Khoảng cách giữa slider và reset icon */
-}
-
-/* Căn chỉnh các thanh trượt */
-input[type="range"] {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 100%;
+/* Slider track styling */
+input[type="range"]::-webkit-slider-runnable-track {
   height: 8px;
-  border-radius: 5px;
-  outline: none;
-  margin: 10px 0;
+  border-radius: 4px;
 }
 
-/* Container chứa các thanh trượt */
-.slider-container {
-  width: 90%;
-  margin: auto;
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 10px;
+  background: white;
+  cursor: pointer;
+  margin-top: -5px; /* Align thumb with track */
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  transform: rotate(180deg);
+  border-radius: 4px;
 }
 
-/* Đảm bảo màu nền chỉ áp dụng cho đúng thanh trượt */
+input[type="range"]::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  background: white;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Specific slider gradients */
 #temperature::-webkit-slider-runnable-track {
   background: linear-gradient(to right, blue, white, yellow);
 }
 
+#tint::-webkit-slider-runnable-track {
+  background: linear-gradient(to right, green, white, magenta);
+}
+
+#brightness::-webkit-slider-runnable-track {
+  background: linear-gradient(to right, black, white);
+}
+
 #contrast::-webkit-slider-runnable-track {
-  background: linear-gradient(to right, white, black);
+  background: linear-gradient(to right, gray, black);
 }
 
 #hue::-webkit-slider-runnable-track {
@@ -248,18 +194,9 @@ input[type="range"] {
 }
 
 #saturation::-webkit-slider-runnable-track {
-  background: linear-gradient(to right, black, white);
+  background: linear-gradient(to right, gray, blue);
 }
 
-#brightness::-webkit-slider-runnable-track {
-  background: linear-gradient(to right, black, white);
-}
-
-#tint::-webkit-slider-runnable-track {
-  background: linear-gradient(to right, purple, white, green);
-}
-
-/* Thanh trượt màu */
 #redRange::-webkit-slider-runnable-track {
   background: linear-gradient(to right, cyan, red);
 }
@@ -270,6 +207,31 @@ input[type="range"] {
 
 #blueRange::-webkit-slider-runnable-track {
   background: linear-gradient(to right, yellow, blue);
+}
+
+/* Firefox support */
+#temperature::-moz-range-track {
+  background: linear-gradient(to right, blue, white, yellow);
+}
+
+#tint::-moz-range-track {
+  background: linear-gradient(to right, green, white, magenta);
+}
+
+#brightness::-moz-range-track {
+  background: linear-gradient(to right, black, white);
+}
+
+#contrast::-moz-range-track {
+  background: linear-gradient(to right, gray, black);
+}
+
+#hue::-moz-range-track {
+  background: linear-gradient(to right, red, yellow, green, cyan, blue, magenta, red);
+}
+
+#saturation::-moz-range-track {
+  background: linear-gradient(to right, gray, blue);
 }
 
 #redRange::-moz-range-track {
@@ -284,119 +246,41 @@ input[type="range"] {
   background: linear-gradient(to right, yellow, blue);
 }
 
+/* Reset icon */
 .reset-icon {
   background: none;
-  /* Bỏ nền */
   border: none;
-  /* Bỏ viền */
+  color: white;
   cursor: pointer;
-  font-size: 20px;
-  /* Điều chỉnh kích thước icon */
-  color: #fff;
-  /* Đổi màu icon nếu cần */
-  transition: transform 0.3s ease;
+  font-size: 14px;
+  width: 24px;
+  height: 24px;
   display: flex;
-  justify-content: center;
   align-items: center;
-  width: auto;
-  /* Loại bỏ kích thước cố định */
-  height: auto;
-  padding: 0;
+  justify-content: center;
+  transition: transform 0.3s ease;
 }
 
 .reset-icon:hover {
-  transform: rotate(360deg);
+  transform: rotate(180deg);
 }
 
-
-/* Tùy chỉnh nút trượt */
-input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  width: 16px;
-  height: 16px;
-  background: white;
-  border-radius: 50%;
-  cursor: pointer;
-  border: 1px solid gray;
-}
-
-input[type="range"]::-moz-range-thumb {
-  width: 16px;
-  height: 16px;
-  background: white;
-  border-radius: 50%;
-  cursor: pointer;
-  border: 1px solid gray;
-}
-
-/* Ẩn input file gốc */
-input[type="file"] {
-  display: none;
-}
-
-/* Kiểu dáng của thanh trượt trên Chrome */
-input[type="range"]::-webkit-slider-runnable-track {
-  height: 8px;
-  border-radius: 5px;
-  background: linear-gradient(to right, blue, white, yellow);
-}
-
-/* Kiểu dáng của nút kéo trên Chrome */
-input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 16px;
-  height: 16px;
-  background: white;
-  border: 2px solid black;
-  border-radius: 50%;
-  cursor: pointer;
-  margin-top: -4px;
-}
-
-/* Hộp điều khiển */
-.controls {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 15px;
-  padding: 15px;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-}
-
-/* Các nhóm chỉnh màu */
-.control-group {
-  margin-bottom: 15px;
-  padding: 10px;
-  background: rgba(0, 0, 0, 0.3);
-  border-radius: 10px;
-}
-
-/* Thanh trượt */
-input[type="range"] {
-  width: 100%;
-  appearance: none;
-  background: linear-gradient(to right, green, yellow, magenta);
-  border-radius: 5px;
-  height: 5px;
-}
-
-/* button:hover {
-    background: linear-gradient(45deg, #FF4D4D, #FF008A);
-  } */
-
+/* Export button */
 .dlb {
-  position: relative;
-  background: linear-gradient(90deg, #fe0076, #fe00c4);
-  width: 100%;
-  padding: 10px;
-  color: white;
+  background-color: #D9D9D9;
+  color: black;
   border: none;
   border-radius: 20px;
-  cursor: pointer;
+  padding: 12px 20px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
   font-size: 16px;
-  margin-top: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  margin: 10px auto;
+  position: relative;
   overflow: hidden;
-  transition: all 0.3s ease-in-out;
-  z-index: 1;
 }
 
 .dlb::before {
@@ -406,68 +290,385 @@ input[type="range"] {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(45deg, #fe00c4, #fe0076);
+  background-color: #B1B1B1;
   opacity: 0;
-  transition: opacity 0.4s ease-in-out;
-  border-radius: 20px;
+  transition: opacity 0.3s ease;
   z-index: -1;
+  border-radius: 20px;
 }
 
 .dlb:hover {
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
-  /* Giữ shadow nhẹ */
   transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .dlb:hover::before {
   opacity: 1;
 }
 
-
-
-/* Responsive: Hiển thị dọc trên mobile */
-@media (max-width: 768px) {
+/* Responsive design - Extra large screens (1400px and up) */
+@media (min-width: 1400px) {
   .container {
-    flex-direction: column;
-    align-items: center;
+    max-width: 1600px;
+    gap: 40px;
   }
-
-  #preview-container,
+  
   .tools {
-    width: 100%;
+    max-width: 400px;
   }
-
-  .tools {
-    border-left: none;
-    border-top: 2px solid #ddd;
-    padding-top: 20px;
-  }
+  
   .logo-container {
-    width: 12%; /* Thu nhỏ một chút */
-    bottom: -30px;
+    max-width: 220px;
+  }
+  
+  #canvas {
+    height: 75vh;
   }
 }
-/* Khi màn hình nhỏ hơn 1024px */
-@media (max-width: 1024px) {
-  body {
-    height: auto;
-  }
 
+/* Large desktop screens (1200px to 1399px) */
+@media (min-width: 1200px) and (max-width: 1399px) {
+  .container {
+    max-width: 1140px;
+  }
+  
+  .tools {
+    max-width: 350px;
+  }
+}
+
+/* Desktop screens (992px to 1199px) */
+@media (min-width: 992px) and (max-width: 1199px) {
+  .container {
+    max-width: 960px;
+    gap: 25px;
+  }
+  
+  .tools {
+    max-width: 320px;
+  }
+  
+  .logo-container {
+    max-width: 180px;
+  }
+}
+
+/* Tablet landscape (768px to 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+  .container {
+    max-width: 720px;
+    gap: 20px;
+  }
+  
+  #preview-container {
+    max-width: 60%;
+  }
+  
+  .tools {
+    max-width: 300px;
+    padding: 15px;
+  }
+  
+  .logo-container {
+    max-width: 150px;
+  }
+  
+  .control label {
+    width: 80px;
+    font-size: 13px;
+  }
+  
+  .slider-group {
+    padding: 15px;
+  }
+}
+
+/* Tablet portrait (576px to 767px) */
+@media (min-width: 576px) and (max-width: 767px) {
   .container {
     flex-direction: column;
     align-items: center;
+    max-width: 540px;
+    padding: 20px;
   }
+  
+  #preview-container {
+    max-width: 90%;
+    margin-bottom: 30px;
+  }
+  
+  .tools {
+    max-width: 90%;
+  }
+  
+  .logo-container {
+    max-width: 140px;
+  }
+  
+  #canvas {
+    height: 60vh;
+  }
+}
 
-  #preview-container,
+/* Large mobile phones (481px to 575px) */
+@media (min-width: 481px) and (max-width: 575px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+  }
+  
+  #preview-container {
+    max-width: 100%;
+    margin-bottom: 25px;
+  }
+  
   .tools {
     max-width: 100%;
+    padding: 15px;
+  }
+  
+  .logo-container {
+    max-width: 130px;
+  }
+  
+  #canvas {
+    height: 50vh;
+  }
+  
+  .button-group {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .custom-file-upload, 
+  .resetAllBtn {
+    width: 100%;
+    padding: 10px;
+  }
+  
+  .control {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .control label {
+    margin-bottom: 5px;
+    width: 100%;
+  }
+  
+  input[type="range"] {
+    width: 100%;
+    margin: 10px 0;
+  }
+  
+  .reset-icon {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+  }
+  
+  .slider-group {
+    position: relative;
+    padding-top: 30px;
+    padding-bottom: 10px;
   }
 }
 
+/* Small mobile phones (320px to 480px) */
 @media (max-width: 480px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+  }
+  
+  #preview-container {
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .tools {
+    max-width: 100%;
+    padding: 12px;
+  }
+  
   .logo-container {
-    width: 10%;
-    bottom: -20px;
-    left: 5px;
+    max-width: 110px;
+  }
+  
+  #canvas {
+    height: 45vh;
+  }
+  
+  .button-group {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .custom-file-upload, 
+  .resetAllBtn {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+  }
+  
+  .control {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 12px;
+  }
+  
+  .control label {
+    margin-bottom: 4px;
+    width: 100%;
+    font-size: 13px;
+  }
+  
+  input[type="range"] {
+    width: 100%;
+    margin: 8px 0;
+  }
+  
+  .reset-icon {
+    position: absolute;
+    right: 12px;
+    top: 8px;
+    width: 20px;
+    height: 20px;
+  }
+  
+  .slider-group {
+    position: relative;
+    padding: 25px 12px 8px 12px;
+    margin-bottom: 12px;
+  }
+  
+  .dlb {
+    padding: 10px;
+    font-size: 14px;
+  }
+}
+
+/* Extra small devices (below 320px) */
+@media (max-width: 320px) {
+  .container {
+    padding: 5px;
+  }
+  
+  #canvas {
+    height: 40vh;
+  }
+  
+  .logo-container {
+    max-width: 90px;
+  }
+  
+  .tools {
+    padding: 10px;
+  }
+  
+  .slider-group {
+    padding: 20px 10px 8px 10px;
+  }
+  
+  .control label {
+    font-size: 12px;
+  }
+  
+  .custom-file-upload, 
+  .resetAllBtn,
+  .dlb {
+    font-size: 13px;
+    padding: 8px;
+  }
+}
+
+/* For landscape orientation on mobile devices */
+@media (max-height: 500px) and (orientation: landscape) {
+  .container {
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 10px;
+  }
+  
+  #preview-container {
+    max-width: 60%;
+    margin-bottom: 0;
+  }
+  
+  .tools {
+    max-width: 35%;
+  }
+  
+  #canvas {
+    height: 80vh;
+  }
+  
+  .logo-container {
+    max-width: 100px;
+  }
+  
+  .slider-group {
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .control {
+    margin-bottom: 8px;
+  }
+}
+
+/* For high-density (retina) displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .reset-icon {
+    font-size: 12px;
+  }
+  
+  input[type="range"]::-webkit-slider-thumb {
+    border-width: 2px;
+  }
+}
+
+/* For users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .custom-file-upload:hover,
+  .resetAllBtn:hover,
+  .dlb:hover,
+  .reset-icon:hover {
+    transform: none;
+    transition: none;
+  }
+}
+
+/* For dark mode preference */
+@media (prefers-color-scheme: dark) {
+  body {
+    background: linear-gradient(135deg, #1a1a1a, #505050);
+  }
+  
+  .slider-group {
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+}
+
+/* For print media */
+@media print {
+  body {
+    background: white;
+    color: black;
+  }
+  
+  .tools, .button-group, .reset-icon, .dlb {
+    display: none;
+  }
+  
+  #preview-container {
+    max-width: 100%;
+  }
+  
+  #canvas {
+    border: none;
+    box-shadow: none;
   }
 }
