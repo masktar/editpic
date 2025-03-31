@@ -309,12 +309,6 @@ input[type="range"]::-moz-range-thumb {
 /* Responsive design - Extra large screens (1400px and up) */
 @media (min-width: 1400px) {
 
-  input[type="range"]::-webkit-slider-thumb {
-    width: 30px;
-    height: 30px;
-    border: 3px solid #777;
-  }
-
   .container {
     max-width: 1600px;
     gap: 40px;
@@ -336,12 +330,6 @@ input[type="range"]::-moz-range-thumb {
 /* Large desktop screens (1200px to 1399px) */
 @media (min-width: 1200px) and (max-width: 1399px) {
 
-  input[type="range"]::-webkit-slider-thumb {
-    width: 25px;
-    height: 25px;
-    border: 2px solid #888;
-  }
-
   .container {
     max-width: 1140px;
   }
@@ -353,12 +341,6 @@ input[type="range"]::-moz-range-thumb {
 
 /* Desktop screens (992px to 1199px) */
 @media (min-width: 992px) and (max-width: 1199px) {
-
-  input[type="range"]::-webkit-slider-thumb {
-    width: 22px;
-    height: 22px;
-    border: 2px solid #999;
-  }
 
   .container {
     max-width: 960px;
@@ -378,8 +360,8 @@ input[type="range"]::-moz-range-thumb {
 @media (min-width: 768px) and (max-width: 991px) {
 
   input[type="range"]::-webkit-slider-thumb {
-    width: 20px;
-    height: 20px;
+    width: 15px;
+    height: 15px;
     border: 1.5px solid #aaa;
   }
 
@@ -415,8 +397,8 @@ input[type="range"]::-moz-range-thumb {
 @media (min-width: 576px) and (max-width: 767px) {
 
   input[type="range"]::-webkit-slider-thumb {
-    width: 18px;
-    height: 18px;
+    width: 15px;
+    height: 15px;
     border: 1.5px solid #bbb;
   }
 
@@ -449,8 +431,8 @@ input[type="range"]::-moz-range-thumb {
 @media (min-width: 481px) and (max-width: 575px) {
 
   input[type="range"]::-webkit-slider-thumb {
-    width: 16px;
-    height: 16px;
+    width: 15px;
+    height: 15px;
     border: 1px solid #ccc;
   }
 
@@ -603,8 +585,8 @@ input[type="range"]::-moz-range-thumb {
 @media (max-width: 320px) {
 
   input[type="range"]::-webkit-slider-thumb {
-    width: 12px;
-    height: 12px;
+    width: 15px;
+    height: 15px;
     border: 1px solid #eee;
   }
 
