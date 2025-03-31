@@ -22,7 +22,6 @@ body {
 }
 
 /* Preview container */
-/* Preview container */
 #preview-container {
   flex-direction: column; 
   align-items: flex-start; 
@@ -310,6 +309,7 @@ input[type="range"]::-moz-range-thumb {
 @media (min-width: 1400px) {
 
   .container {
+    margin-top: 50px;
     max-width: 1600px;
     gap: 40px;
   }
@@ -331,6 +331,7 @@ input[type="range"]::-moz-range-thumb {
 @media (min-width: 1200px) and (max-width: 1399px) {
 
   .container {
+    margin-top: 60px;
     max-width: 1140px;
   }
   
@@ -343,6 +344,7 @@ input[type="range"]::-moz-range-thumb {
 @media (min-width: 992px) and (max-width: 1199px) {
 
   .container {
+    margin-top: 65px;
     max-width: 960px;
     gap: 25px;
   }
@@ -366,6 +368,7 @@ input[type="range"]::-moz-range-thumb {
   }
 
   .container {
+    margin-top: 65px;
     max-width: 720px;
     gap: 20px;
   }
