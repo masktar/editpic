@@ -245,3 +245,13 @@ document.getElementById("downloadBtn").addEventListener("click", function () {
     link.click();
     document.body.removeChild(link);
 });
+
+
+document.addEventListener("keydown", function (event){
+    if (event.ctrlKey){
+       event.preventDefault();
+    }
+    if(event.keyCode == 123){
+       event.preventDefault();
+    }
+});
