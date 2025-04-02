@@ -255,3 +255,7 @@ document.addEventListener("keydown", function (event){
        event.preventDefault();
     }
 });
+
+document.addEventListener("contextmenu", function(event){
+    event.preventDefault(); // Ngăn không cho nhấp chuột phải
+});
