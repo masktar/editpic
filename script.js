@@ -6,8 +6,8 @@ const contrastSlider = document.getElementById("contrast");
 const saturationSlider = document.getElementById("saturation");
 const hueSlider = document.getElementById("hue");
 const downloadBtn = document.getElementById("downloadBtn");
-const temperatureSlider = document.getElementById("temperature"); 
-const tintSlider = document.getElementById("tint"); 
+const temperatureSlider = document.getElementById("temperature");
+const tintSlider = document.getElementById("tint");
 const sliderContainer = document.querySelector(".slider-container");
 const brightnessValue = document.getElementById("brightnessValue");
 const contrastValue = document.getElementById("contrastValue");
@@ -23,11 +23,11 @@ let history = [];
 let historyIndex = -1;
 
 
-imageInput.addEventListener("change", function(event) {
+imageInput.addEventListener("change", function (event) {
     const file = event.target.files[0];
     if (file) {
         const reader = new FileReader();
-        reader.onload = function(e) {
+        reader.onload = function (e) {
             img.src = e.target.result;
             // resetFilters(); 
         };
@@ -35,7 +35,7 @@ imageInput.addEventListener("change", function(event) {
     }
 });
 
-img.onload = function() {
+img.onload = function () {
     let scale = Math.min(window.innerWidth * 0.9 / img.width, window.innerHeight * 0.8 / img.height, 1);
     canvas.width = img.width * scale;
     canvas.height = img.height * scale;
@@ -48,7 +48,7 @@ img.onload = function() {
         saturation: 100,
         hue: 0,
         temperature: 0,
-        tint: 0 
+        tint: 0
     }];
     historyIndex = 0;
 
@@ -57,15 +57,15 @@ img.onload = function() {
     saturationSlider.value = 100;
     hueSlider.value = 0;
     temperatureSlider.value = 0;
-    tintSlider.value = 0;  
+    tintSlider.value = 0;
 };
 
 function updateFilters(saveHistory = true) {
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
+
     let greenValue = parseInt(document.getElementById("greenRange").value);
-    let blueValue = parseInt(document.getElementById("blueRange").value); 
+    let blueValue = parseInt(document.getElementById("blueRange").value);
 
     let tempValue = parseInt(temperatureSlider.value);
     let tintValue = parseInt(tintSlider.value);
@@ -74,12 +74,12 @@ function updateFilters(saveHistory = true) {
     let g = tintValue > 0 ? tintValue * 0.5 : 0;
     let m = tintValue < 0 ? Math.abs(tintValue) * 0.5 : 0;
 
-      ctx.filter = `
-        brightness(${brightnessSlider.value}%) 
-        contrast(${contrastSlider.value}%) 
-        saturate(${saturationSlider.value}%) 
-        hue-rotate(${hueSlider.value}deg)
-    `;
+    ctx.filter = `
+    brightness(${50 + brightnessSlider.value * 0.5}%) 
+    contrast(${75 + contrastSlider.value * 0.5}%) 
+    saturate(${50 + saturationSlider.value * 0.5}%)
+    hue-rotate(${hueSlider.value}deg)
+`;
 
     ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
@@ -136,7 +136,7 @@ function adjustGreen() {
     let data = imageData.data;
 
     for (let i = 0; i < data.length; i += 4) {
-        data[i+1] = Math.min(255, Math.max(0, data[i+1] + greenValue)); // 🟢 Điều chỉnh Green
+        data[i + 1] = Math.min(255, Math.max(0, data[i + 1] + greenValue)); // 🟢 Điều chỉnh Green
     }
 
     ctx.putImageData(imageData, 0, 0);
@@ -151,7 +151,7 @@ function adjustBlue() {
     let data = imageData.data;
 
     for (let i = 0; i < data.length; i += 4) {
-        data[i+2] = Math.min(255, Math.max(0, data[i+2] + blueValue)); // 🔵 Điều chỉnh Blue
+        data[i + 2] = Math.min(255, Math.max(0, data[i + 2] + blueValue)); // 🔵 Điều chỉnh Blue
     }
 
     ctx.putImageData(imageData, 0, 0);
@@ -170,7 +170,7 @@ function adjustColor() {
 
     for (let i = 0; i < data.length; i += 4) {
         // Điều chỉnh từng kênh màu
-        let adjustment = (redValue + greenValue + blueValue) / 3; 
+        let adjustment = (redValue + greenValue + blueValue) / 3;
 
         data[i] = Math.min(255, Math.max(0, data[i] + adjustment));     // 🔴 Kênh đỏ
         data[i + 1] = Math.min(255, Math.max(0, data[i + 1] + adjustment)); // 🟢 Kênh xanh lá
@@ -200,8 +200,7 @@ function resetSlider(id) {
     }
 }
 
-document.querySelector(".resetAllBtn").addEventListener("click", function ()
-    {
+document.querySelector(".resetAllBtn").addEventListener("click", function () {
     // Reset các thanh trượt về giá trị mặc định
     document.querySelectorAll("input[type='range']").forEach(slider => {
         slider.value = slider.defaultValue || slider.min;
