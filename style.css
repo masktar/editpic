@@ -1,3 +1,9 @@
+.header {
+  display: flex;
+  justify-content: center;  
+  align-items: center;      
+
+}
 body {
   font-family: 'Montserrat', sans-serif;
   font-weight: 300;
@@ -47,7 +53,7 @@ body {
 
 .logo-container img {
   margin-top: 15px;
-  width: 100%; /* Adjust size as needed */
+  width: 300px; /* Adjust size as needed */
   height: auto; /* Maintain aspect ratio */
 }
 
